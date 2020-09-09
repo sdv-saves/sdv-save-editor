@@ -1,5 +1,5 @@
-import { GameObjectTypes } from './enums';
-import { GameLocation, Buildings, Building, Farmhand } from '../interfaces/locations';
+import { Building } from '../interfaces/locations';
+import { Farmhand } from '../interfaces/farm';
 
 export default class FarmService {
     constructor(private element: any) {

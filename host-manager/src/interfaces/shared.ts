@@ -19,6 +19,10 @@ export interface KeyByFloat {
     float: number;
 }
 
+export interface KeyByLong {
+    long: number;
+}
+
 export interface KeyByStringList {
     string: string[];
 }
@@ -71,11 +75,11 @@ export interface ArrayOfBooleanValue {
     ArrayOfBoolean: ArrayOfBoolean;
   }
   
-  export interface ArrayOfBoolean {
+export interface ArrayOfBoolean {
     boolean: boolean[];
   }
 
-  export interface KeyByStringBooleanValue {
+export interface KeyByStringBooleanValue {
     key: KeyByString
     value: BooleanValue
 }
@@ -84,8 +88,11 @@ export interface BooleanValue {
     boolean: ArrayOfBoolean;
   }
   
-  export interface ArrayOfBoolean {
-    boolean: boolean[];
-  }
+export interface ArrayOfBoolean {
+boolean: boolean[];
+}
 
+export interface ArrayOfLong {
+    long: number[];
+}
   

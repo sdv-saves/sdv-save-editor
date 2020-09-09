@@ -1,4 +1,5 @@
 import { KeyByInt, KeyByFloat, Tile, KeyByIntList, KeyByStringIntValue, KeyByStringList, KeyByString, Tint, KeyByStringArrayOfIntValue, BoundingBox } from './shared';
+import { Object } from './farm';
 
 export interface Player {
     name: string;
@@ -513,11 +514,6 @@ export interface Tool {
 export interface Cupboard {
     Object: Object[];
 }
-  
-export interface Object {
-    "@_xsi:nil": boolean;
-}
-  
 
 export interface Hat {
     category: number;
@@ -584,7 +580,6 @@ export interface LastGiftDate {
     TotalDays: number;
 }
 
-
 export interface LeftRing {
     category: number;
     name: string;
@@ -600,4 +595,21 @@ export interface LeftRing {
     price: number;
     indexInTileSheet: number;
     uniqueID: number;
-  }
+}
+
+export interface RightRing {
+    category: number;
+    name: string;
+    parentSheetIndex: number;
+    specialItem: boolean;
+    hasBeenInInventory: boolean;
+    SpecialVariable: number;
+    Category: number;
+    ParentSheetIndex: number;
+    DisplayName: string;
+    Name: string;
+    Stack: number;
+    price: number;
+    indexInTileSheet: number;
+    uniqueID: number;
+}

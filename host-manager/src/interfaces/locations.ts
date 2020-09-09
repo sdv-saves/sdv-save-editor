@@ -1,5 +1,6 @@
 import { Tile, KeyByInt, KeyByStringArrayOfBooleanValue, KeyByStringBooleanValue, ArrayOfBoolean, BoundingBox, KeyByFloat, Tint } from './shared';
 import { Player } from './player';
+import { LargeTerrainFeature, TerrainFeature, Farmhand, Indoors, FurnitureList, Fridge } from './farm';
 
 export interface Locations {
     GameLocation: GameLocation[];
@@ -9,8 +10,8 @@ export interface GameLocation {
     "@_xsi:type"?: string;
     characters: any;
     objects: any;
-    largeTerrainFeatures: any;
-    terrainFeatures: any;
+    largeTerrainFeatures: LargeTerrainFeature;
+    terrainFeatures: TerrainFeature;
     name: string;
     waterColor: Tile;
     isFarm: boolean;
@@ -54,160 +55,53 @@ export interface GameLocation {
     ascending?: boolean;
 }
 
-export interface FurnitureList {
-    Furniture: Furniture[];
-}
-
-export interface Furniture {
-    category: number;
-    name: string;
-    parentSheetIndex: number;
-    specialItem: boolean;
-    hasBeenInInventory: boolean;
-    SpecialVariable: number;
-    Category: number;
-    ParentSheetIndex: number;
-    DisplayName: string;
-    Name: string;
-    Stack: number;
-    tileLocation: Tile;
-    owner: number;
-    canBeSetDown: boolean;
-    canBeGrabbed: boolean;
-    isHoedirt: boolean;
-    isSpawnedObject: boolean;
-    questItem: boolean;
-    questId: number;
-    isOn: boolean;
-    fragility: number;
-    price: number;
-    edibility: number;
-    stack: number;
-    quality: number;
-    bigCraftable: boolean;
-    setOutdoors: boolean;
-    setIndoors: boolean;
-    readyForHarvest: boolean;
-    showNextIndex: boolean;
-    flipped: boolean;
-    hasBeenPickedUpByFarmer: boolean;
-    isRecipe: boolean;
-    isLamp: boolean;
-    heldObject?: HeldObject;
-    minutesUntilReady: number;
-    boundingBox: BoundingBox;
-    scale: KeyByFloat;
-    preservedParentSheetIndex: number;
-    furniture_type: number;
-    rotations: number;
-    currentRotation: number;
-    sourceRect: BoundingBox;
-    defaultSourceRect: BoundingBox;
-    defaultBoundingBox: BoundingBox;
-    drawHeldObjectLow: boolean;
-    "@_xsi:type"?: string;
-}
-
 export interface HeldObject {
     "@_xsi:type": string;
-    category: number;
-    name: string;
-    parentSheetIndex: number;
-    specialItem: boolean;
-    hasBeenInInventory: boolean;
-    SpecialVariable: number;
-    Category: number;
-    ParentSheetIndex: number;
-    DisplayName: string;
-    Name: string;
-    Stack: number;
-    tileLocation: Tile;
-    owner: number;
-    canBeSetDown: boolean;
-    canBeGrabbed: boolean;
-    isHoedirt: boolean;
-    isSpawnedObject: boolean;
-    questItem: boolean;
-    questId: number;
-    isOn: boolean;
-    fragility: number;
-    price: number;
-    edibility: number;
-    stack: number;
-    quality: number;
     bigCraftable: boolean;
-    setOutdoors: boolean;
-    setIndoors: boolean;
-    readyForHarvest: boolean;
-    showNextIndex: boolean;
-    flipped: boolean;
-    hasBeenPickedUpByFarmer: boolean;
-    isRecipe: boolean;
-    isLamp: boolean;
-    minutesUntilReady: number;
     boundingBox: BoundingBox;
-    scale: KeyByFloat;
-    preservedParentSheetIndex: number;
-    furniture_type: number;
-    rotations: number;
+    canBeGrabbed: boolean;
+    canBeSetDown: boolean;
+    category: number;
+    Category: number;
     currentRotation: number;
-    sourceRect: BoundingBox;
-    defaultSourceRect: BoundingBox;
     defaultBoundingBox: BoundingBox;
-    drawHeldObjectLow: boolean;
-}
-
-export interface Fridge {
-    category: number;
-    name: string;
-    parentSheetIndex: number;
-    specialItem: boolean;
-    hasBeenInInventory: boolean;
-    SpecialVariable: number;
-    Category: number;
-    ParentSheetIndex: number;
+    defaultSourceRect: BoundingBox;
     DisplayName: string;
-    Name: string;
-    Stack: number;
-    tileLocation: Tile;
-    owner: number;
-    type: string;
-    canBeSetDown: boolean;
-    canBeGrabbed: boolean;
-    isHoedirt: boolean;
-    isSpawnedObject: boolean;
-    questItem: boolean;
-    questId: number;
-    isOn: boolean;
-    fragility: number;
-    price: number;
+    drawHeldObjectLow: boolean;
     edibility: number;
-    stack: number;
-    quality: number;
-    bigCraftable: boolean;
-    setOutdoors: boolean;
-    setIndoors: boolean;
-    readyForHarvest: boolean;
-    showNextIndex: boolean;
     flipped: boolean;
+    fragility: number;
+    furniture_type: number;
+    hasBeenInInventory: boolean;
     hasBeenPickedUpByFarmer: boolean;
-    isRecipe: boolean;
+    isHoedirt: boolean;
     isLamp: boolean;
+    isOn: boolean;
+    isRecipe: boolean;
+    isSpawnedObject: boolean;
     minutesUntilReady: number;
-    boundingBox: BoundingBox;
-    scale: KeyByFloat;
+    name: string;
+    Name: string;
+    owner: number;
+    parentSheetIndex: number;
+    ParentSheetIndex: number;
     preservedParentSheetIndex: number;
-    currentLidFrame: number;
-    frameCounter: number;
-    coins: number;
-    items: string;
-    chestType: string;
-    tint: Tint;
-    playerChoiceColor: Tint;
-    playerChest: boolean;
-    fridge: boolean;
-    giftbox: boolean;
-    Tint: Tint;
+    price: number;
+    quality: number;
+    questId: number;
+    questItem: boolean;
+    readyForHarvest: boolean;
+    rotations: number;
+    scale: KeyByFloat;
+    setIndoors: boolean;
+    setOutdoors: boolean;
+    showNextIndex: boolean;
+    sourceRect: BoundingBox;
+    specialItem: boolean;
+    SpecialVariable: number;
+    Stack: number;
+    stack: number;
+    tileLocation: Tile;
 }
 
 export interface Buildings {
@@ -232,43 +126,7 @@ export interface Buildings {
     magical: boolean;
     owner: number;
     "@_xsi:type"?: string;
-  }
-  
-  export interface Indoors {
-    "@_xsi:type"?: string;
-    characters: string;
-    objects: any;
-    largeTerrainFeatures: string;
-    terrainFeatures: string;
-    name: string;
-    waterColor: Tint;
-    isFarm: boolean;
-    isOutdoors: boolean;
-    isStructure: boolean;
-    ignoreDebrisWeather: boolean;
-    ignoreOutdoorLighting: boolean;
-    ignoreLights: boolean;
-    treatAsOutdoors: boolean;
-    numberOfSpawnedObjectsOnMap: number;
-    wallPaper: any;
-    floor: any;
-    furniture?: Furniture;
-    farmerNumberOfOwner?: number;
-    fireplaceOn?: boolean;
-    fridge?: Fridge;
-    farmhand?: Farmhand;
-    uniqueName: string;
-    animals?: string;
-    animalLimit?: number;
-    animalsThatLiveHere?: string;
-    incubatingEgg?: Tile;
-  }
-
-export interface Farmhand extends Player {
-
 }
-
-
 
 export interface ResourceClumps {
     ResourceClump: ResourceClump[];
