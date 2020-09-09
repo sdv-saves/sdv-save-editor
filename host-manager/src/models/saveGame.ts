@@ -1,5 +1,6 @@
 import Farm from './farm'
 import { SaveFile } from '../interfaces/saveFile';
+import { GameLocation } from '../interfaces/locations';
 
 
 export default class SaveGameService {

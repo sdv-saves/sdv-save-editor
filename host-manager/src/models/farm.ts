@@ -10,6 +10,5 @@ export default class FarmService {
     get cabins(): Building[] { return this.buildings.filter((building: Building) => building.indoors['@_xsi:type'] === 'Cabin'); }
     get farmhands(): Farmhand[] { return this.cabins.map(cabin => cabin.indoors.farmhand) as Farmhand[]; }
 
-    ge
 
 }

@@ -1,14 +1,16 @@
 import * as fs from 'fs';
+import { homedir, platform } from 'os';
 import path from 'path';
 import SaveGameService from '../models/saveGame';
-import { SaveFile } from '../models/interfaces';
+import { SaveFile } from '../interfaces/saveFile';
 
 import parser, { j2xParser } from 'fast-xml-parser';
 const xmlParser = new j2xParser({
     ignoreAttributes: false
 })
+const appDataDir = platform() === 'win32' ? (process.env.APPDATA as string) : path.join(homedir(), '.config');
 export default class FileLoader {
-    static dir = path.join((process.env.APPDATA as string), 'StardewValley', 'Saves');
+    static dir = path.join(appDataDir, 'StardewValley', 'Saves');
 
     static loadSaveFile(dir: string): SaveGameService {
         const file = fs.readFileSync(path.join(this.dir, dir, dir)).toString();
