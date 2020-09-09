@@ -1,4 +1,5 @@
 import { Tile, KeyByFloat, KeyByInt, KeyByStringList, KeyByIntList, BoundingBox, KeyByStringIntValue, KeyByStringArrayOfIntValue, KeyByStringArrayOfBooleanValue, KeyByStringBooleanValue, ArrayOfBoolean, ArrayOfInt, KeyByString, Tint } from './shared';
+import Farm from './farm';
 
 export interface SaveFile {
     "@_xmlns:xsi": string;

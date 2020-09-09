@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import {homedir} from "os";
 import path from 'path';
 import SaveGameService from '../models/saveGame';
 import { SaveFile } from '../models/interfaces';
@@ -7,8 +8,12 @@ import parser, { j2xParser } from 'fast-xml-parser';
 const xmlParser = new j2xParser({
     ignoreAttributes: false
 })
+
+
 export default class FileLoader {
-    static dir = path.join((process.env.APPDATA as string), 'StardewValley', 'Saves');
+    // Can't use process.env.APPDATA for Unix Systems: saves are located in ~/.config/StardewValley/Saves
+    static dir = path.join(homedir(), ".config", 'StardewValley', 'Saves') 
+    //static dir = path.join((process.env.APPDATA as string), 'StardewValley', 'Saves');
 
     static loadSaveFile(dir: string): SaveGameService {
         const file = fs.readFileSync(path.join(this.dir, dir, dir)).toString();
