@@ -1,4 +1,5 @@
-import { SaveFile, GameLocation } from './interfaces';
+import Farm from './farm'
+import { SaveFile } from '../interfaces/saveFile';
 
 
 export default class SaveGameService {
