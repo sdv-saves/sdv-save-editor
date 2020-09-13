@@ -1,7 +1,10 @@
 import { Module } from '@nestjs/common';
-import { SaveEditorModule } from './save-editor/save-editor.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
-  imports: [SaveEditorModule]
+  imports: [],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
