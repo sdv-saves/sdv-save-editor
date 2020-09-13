@@ -1,4 +1,4 @@
-import { Building, Buildings, Farmhand, SaveFile } from './interfaces';
+import { GameLocation, SaveFile } from './interfaces';
 import Farm from './farm'
 
 export default class Save {
@@ -10,5 +10,5 @@ export default class Save {
 
     get saveGame(): SaveFile { return this.element.SaveGame; }
 
-    get farm(): Farm { return new Farm(this.saveGame.locations.GameLocation); }
+    get farm(): Farm { return new Farm(this.saveGame.locations.GameLocation.find((x: any) => x['@_xsi:type'] === 'Farm') as GameLocation); }
 }

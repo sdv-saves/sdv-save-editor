@@ -12,8 +12,9 @@ const xmlParser = new j2xParser({
 
 export default class FileLoader {
     // Can't use process.env.APPDATA for Unix Systems: saves are located in ~/.config/StardewValley/Saves
-    static dir = path.join(homedir(), ".config", 'StardewValley', 'Saves') 
-    //static dir = path.join((process.env.APPDATA as string), 'StardewValley', 'Saves');
+    static dir = process.platform === "win32"
+        ? path.join((process.env.APPDATA as string), 'StardewValley', 'Saves')
+        : path.join(homedir(), ".config", 'StardewValley', 'Saves') 
 
     static loadSaveFile(dir: string): SaveGameService {
         const file = fs.readFileSync(path.join(this.dir, dir, dir)).toString();

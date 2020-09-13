@@ -5,8 +5,8 @@ export default interface Farm extends GameLocation {
     buildings: Buildings;
 };
 export default class Farm {
-    constructor(gameLocations: GameLocation[]) {
-        Object.assign(this, gameLocations.find((x: any) => x['@_xsi:type'] === 'Farm'));
+    constructor(gameLocation: GameLocation) {
+        Object.assign(this, gameLocation);
     }
 
     get cabins(): Building[] { return this.buildings.Building.filter((building: Building) => building.indoors['@_xsi:type'] === 'Cabin'); }
