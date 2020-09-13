@@ -2,8 +2,7 @@ import Farm from './farm'
 import { SaveFile } from '../interfaces/saveFile';
 import { GameLocation } from '../interfaces/locations';
 
-
-export default class SaveGameService {
+export default class Save {
     element: any;
 
     constructor(data: any) {
@@ -12,6 +11,5 @@ export default class SaveGameService {
 
     get saveGame(): SaveFile { return this.element.SaveGame; }
 
-    get farm(): GameLocation { return this.saveGame.locations.GameLocation.find((x: any) => x['@_xsi:type'] === 'Farm') as GameLocation; }
-    
+    get farm(): Farm { return new Farm(this.saveGame.locations.GameLocation.find((x: any) => x['@_xsi:type'] === 'Farm') as GameLocation); }
 }
