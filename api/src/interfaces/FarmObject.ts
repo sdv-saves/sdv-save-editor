@@ -1,6 +1,6 @@
-import { GameObjectTypes } from './enums';
-import { LargeTerrainFeature, TerrainFeature, VectorKeyObjectValue, VectorKeyTerrainFeatureValue, ObjectList } from '../interfaces/farm';
-import { Building, ResourceClump } from '../interfaces/locations';
+import { GameObjectTypes } from '../models/enums';
+import { LargeTerrainFeature, TerrainFeature, VectorKeyObjectValue, VectorKeyTerrainFeatureValue, ObjectList } from '../models/farm';
+import { Building, ResourceClump } from '../models/locations';
 
 export interface FarmObjectConfig {
     type: GameObjectTypes;

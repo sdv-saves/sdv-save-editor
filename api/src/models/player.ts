@@ -151,10 +151,11 @@ export interface Player {
     hasRustyKey: boolean;
     hasSkullKey: boolean;
     canUnderstandDwarves: boolean;
-    UniqueMultiplayerID: number;
+    UniqueMultiplayerID: string;
     leftRing?: LeftRing;
 }
-export class Player implements Player {};
+
+export class Player {}
 
 export interface QuestLog {
     Quest: Quest[];

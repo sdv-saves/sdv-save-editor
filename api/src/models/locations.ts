@@ -1,6 +1,6 @@
 import { Tile, KeyByInt, KeyByStringArrayOfBooleanValue, KeyByStringBooleanValue, ArrayOfBoolean, BoundingBox, KeyByFloat, Tint } from './shared';
 import { Player } from './player';
-import { LargeTerrainFeature, TerrainFeature, Farmhand, Indoors, FurnitureList, Fridge } from './farm';
+import { LargeTerrainFeature, TerrainFeature, Indoors, FurnitureList, Fridge } from './farm';
 
 export interface Locations {
     GameLocation: GameLocation[];

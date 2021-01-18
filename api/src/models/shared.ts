@@ -95,4 +95,3 @@ boolean: boolean[];
 export interface ArrayOfLong {
     long: number[];
 }
-  
