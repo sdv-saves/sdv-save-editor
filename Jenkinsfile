@@ -8,14 +8,30 @@ pipeline {
         stage('Build') {
             steps {
                 dir("${env.WORKSPACE}/api") {
-                    sh 'npm install';
+                    sh 'npm install'
                 }
             }
         }
         stage('Test') {
             steps {
                 dir("${env.WORKSPACE}/api") {
-                    sh 'npm test';
+                    sh 'npm test'
+                }
+            }
+        }
+        stage('Package') {
+            when {
+                branch 'tfitz/farmobject'
+                all {
+                    expression {
+                        currentBuild.currentResult == 'SUCCESS'
+                    }
+                }
+            }
+            steps {
+                dir("${env.WORKSPACE}/api") {
+                    sh 'npm run build'
+                    sh "docker build . -f Dockerfile -t ${env.JOB_BASE_NAME}"
                 }
             }
         }
