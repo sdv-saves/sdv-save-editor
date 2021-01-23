@@ -15,6 +15,10 @@ const appDataDir = platform() === 'win32' ? (process.env.APPDATA as string) : pa
 export default class FileUtil {
     static saveDir = path.join(appDataDir, 'StardewValley', 'Saves');
 
+    static getSaveFiles(): string[] {
+        return fs.readdirSync(FileUtil.saveDir);
+    }
+
     static readSaveFile(saveId: string): SaveFile {
         let file = fs.readFileSync(path.join(this.saveDir, saveId, saveId)).toString();
         let data = parser.parse(file, { ignoreAttributes: false, parseAttributeValue : true, ignoreNameSpace: false, parseTrueNumberOnly: true});
