@@ -1,10 +1,9 @@
-import { GameObjectTypes } from './enums';
-import { LargeTerrainFeature, TerrainFeature, VectorKeyObjectValue, VectorKeyTerrainFeatureValue, ObjectList } from '../interfaces/farm';
-import { Building, ResourceClump } from '../interfaces/locations';
+import { GameObjectTypes } from '../models/Enums';
+import { Building, LargeTerrainFeatureElement, ResourceClumpElement, TerrainFeaturesItem, TentacledItem, TerrainFeature } from '../models/SaveGame';
 
 export interface FarmObjectConfig {
     type: GameObjectTypes;
-    element?: VectorKeyObjectValue | Building | LargeTerrainFeature | VectorKeyTerrainFeatureValue | ResourceClump;
+    element?: TentacledItem |  Building | LargeTerrainFeatureElement | TerrainFeaturesItem | ResourceClumpElement | undefined;
     x?: number;
     y?: number;
     width?: number;
@@ -13,7 +12,7 @@ export interface FarmObjectConfig {
 
 
 export default class FarmObject {
-    element: VectorKeyObjectValue | Building | LargeTerrainFeature | VectorKeyTerrainFeatureValue | ResourceClump | undefined;
+    element: FarmObjectConfig["element"]
     x: number;
     y: number;
     width: number;
@@ -71,12 +70,12 @@ export default class FarmObject {
             return !(this.element as TerrainFeature).crop;
         }
         if (this.type == GameObjectTypes.Object) {
-            const category = (this.element as VectorKeyObjectValue).value.Object.category;
+            const category = (this.element as TentacledItem).value.Object.category;
             if(category == -9 || category == -8) {
                 return false;
             }
             if (category == 0) {
-                const name = (this.element as VectorKeyObjectValue).value.Object.name;
+                const name = (this.element as TentacledItem).value.Object.name;
                 if (this.cannotBeRemovedObjectList.indexOf(name) !== -1) {
                     return false;
                 }
@@ -94,21 +93,21 @@ export default class FarmObject {
             case GameObjectTypes.Grass:
                 this.width = 1;
                 this.height = 1;
-                this.x = (this.element as VectorKeyTerrainFeatureValue).key.Vector2.X;
-                this.y = (this.element as VectorKeyTerrainFeatureValue).key.Vector2.Y;
+                this.x = (this.element as TentacledItem).key.Vector2.X;
+                this.y = (this.element as TentacledItem).key.Vector2.Y;
                 break;
             case GameObjectTypes.Bush:
                 this.width = 1; // TODO: Figure out Bush types
                 this.height = 1; // TODO: Figure out Bush types to determine W and H
-                this.x = (this.element as LargeTerrainFeature).tilePosition.X;
-                this.y = (this.element as LargeTerrainFeature).tilePosition.Y;
+                this.x = (this.element as LargeTerrainFeatureElement).tilePosition.X;
+                this.y = (this.element as LargeTerrainFeatureElement).tilePosition.Y;
                 break;
             case GameObjectTypes.LogsAndRocks:
             case GameObjectTypes.Meteorite:
-                this.width = (this.element as ResourceClump).width;
-                this.height = (this.element as ResourceClump).height;
-                this.x = (this.element as ResourceClump).tile.X;
-                this.y = (this.element as ResourceClump).tile.Y;
+                this.width = (this.element as ResourceClumpElement).width;
+                this.height = (this.element as ResourceClumpElement).height;
+                this.x = (this.element as ResourceClumpElement).tile.X;
+                this.y = (this.element as ResourceClumpElement).tile.Y;
                 break;
             case GameObjectTypes.Building:                  
                 this.width = (this.element as Building).tilesWide + 1;
