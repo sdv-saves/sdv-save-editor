@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import SaveFile from '../interfaces/SaveFile';
 
 @Injectable()
-export default class LocalSaveService {
+export class LocalSaveService {
     getSave(saveId: string): SaveFile {
         return FileUtil.readSaveFile(saveId);
     }

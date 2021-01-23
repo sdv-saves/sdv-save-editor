@@ -1,9 +1,9 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import SaveFile from '../interfaces/SaveFile';
-import LocalSaveService from '../services/localsave.service';
+import SaveFile from '../interfaces/saveFile';
+import { LocalSaveService } from '../services/localsave.service';
 
 @Controller("local")
-export default class LocalController {
+export class LocalController {
     constructor(
         private readonly saveFileService: LocalSaveService
     ) {}
