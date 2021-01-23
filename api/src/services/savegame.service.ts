@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import SaveFile from '../interfaces/SaveFile';
+import SaveFile from '../interfaces/saveFile';
 import { Player, Building } from '../models/SaveGame';
-import LocalSaveService from './localsave.service';
+import { LocalSaveService } from './localsave.service';
 
 @Injectable()
 export class SaveGameService {

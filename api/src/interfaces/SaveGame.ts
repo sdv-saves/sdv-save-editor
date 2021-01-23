@@ -1,4 +1,4 @@
-import Farm from './Farm';
+import Farm from './farm';
 
 import { SaveGame as SaveModel, Player } from '../models/SaveGame'
 

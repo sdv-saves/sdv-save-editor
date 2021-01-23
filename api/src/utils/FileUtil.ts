@@ -1,4 +1,4 @@
-import SaveFile from '../interfaces/SaveFile';
+import SaveFile from '../interfaces/saveFile';
 
 import * as fs from 'fs';
 import { homedir, platform } from 'os';
