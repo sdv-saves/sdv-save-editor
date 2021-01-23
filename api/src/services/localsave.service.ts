@@ -1,9 +1,9 @@
 import FileUtil from '../utils/FileUtil'
 import { Injectable } from '@nestjs/common';
-import SaveFile from '../interfaces/SaveFile';
+import SaveFile from '../interfaces/saveFile';
 
 @Injectable()
-export default class LocalSaveService {
+export class LocalSaveService {
     getSave(saveId: string): SaveFile {
         return FileUtil.readSaveFile(saveId);
     }

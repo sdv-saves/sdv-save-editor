@@ -1,4 +1,4 @@
-import { GameObjectTypes } from '../models/Enums';
+import { GameObjectTypes } from '../models/enums';
 import { Building, LargeTerrainFeatureElement, ResourceClumpElement, TerrainFeaturesItem, TentacledItem, TerrainFeature } from '../models/SaveGame';
 
 export interface FarmObjectConfig {
