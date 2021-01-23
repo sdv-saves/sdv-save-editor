@@ -119,17 +119,20 @@ export default class FarmObject {
     }
 
     setTileXYRange() {
-        this.xyRange = []; 
-
         // returns a list of coords like this: [[0, 1], [0, 2], [0, 3], [0, 4], [1, 1], [1, 2], [1, 3], [1, 4]]
-
+        
         // need to translate this C# beauty to JS
         // TileXYRange = Enumerable.Range(TileX, Width)
         // .SelectMany(x =>
         //     Enumerable.Range(TileY, Height)
         //     .Select(y => new Tuple<int, int>(x, y))
         // );
+        this.xyRange = Array.from(Range(this.x, this.width)).flatMap(x => Array.from(Range(this.y, this.height)).map(y => [x, y])) as [number, number][];
     }
 }
 
-
+function* Range(min,ct) {
+    for (let x=min;x<=min+ct;x++) {
+        yield x;
+    }
+}
