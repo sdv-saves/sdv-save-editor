@@ -1,8 +1,6 @@
 import Farm from './Farm';
 
-import { GameLocation, Locations, Building } from '../models/locations';
-import { SaveGame as SaveModel } from '../models/save'
-import { Player } from '../models/player'
+import { SaveGame as SaveModel, Player } from '../models/SaveGame'
 
 export default interface SaveGame extends SaveModel {}
 
@@ -14,7 +12,7 @@ export default class SaveGame {
     get farm(): Farm { return new Farm(this.locations.GameLocation.find((x: any) => x['@_xsi:type'] === 'Farm')); }
     get players(): Player[] {
         let players = [this.player];
-        players = players.concat(this.farm.farmhands as Player[]);
+        players = players.concat(this.farm.farmhands);
         return players;
     }
     

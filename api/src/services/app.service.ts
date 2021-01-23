@@ -1,12 +1,12 @@
-import { Player } from '../models/player';
-import { Building } from '../models/locations'
-import SaveFile from '../interfaces/SaveFile';
+
+import { Player, Building } from '../models/SaveGame';
 import FileUtil from '../utils/FileUtil'
 
 import * as fs from 'fs';
 import { homedir, platform } from 'os';
 import * as path from 'path';
 import { Injectable } from '@nestjs/common';
+import SaveFile from '../interfaces/SaveFile';
 
 @Injectable()
 export class AppService {
@@ -42,7 +42,7 @@ export class AppService {
     updateHost(saveId: string, newHostId: string): SaveFile {
         let save = FileUtil.readSaveFile(saveId);
 
-        let previousHost = Object.assign(new Player(), save.SaveGame.player);
+        let previousHost = save.SaveGame.player;
         
         let newHost = save.SaveGame.players[
             save.SaveGame.players.findIndex((player: Player, index: number) => player.UniqueMultiplayerID === newHostId)

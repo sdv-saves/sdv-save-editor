@@ -1,10 +1,9 @@
-import { Building, GameLocation } from '../models/locations';
-import { Player } from '../models/player';
 
 import { v4 as uuid } from 'uuid';
 import * as xmlParser from 'fast-xml-parser';
 
 import * as fs from 'fs';
+import { GameLocation, Building, Player, Farmhand } from '../models/SaveGame';
 
 export default interface Farm extends GameLocation {}
 
@@ -14,7 +13,7 @@ export default class Farm {
     }
     
     get cabins(): Building[] { return this.buildings.Building.filter((building: Building) => building.indoors && building.indoors['@_xsi:type'] === 'Cabin'); }
-    get farmhands(): Player[] { return this.cabins.map(cabin => cabin.indoors.farmhand) as Player[]; }
+    get farmhands(): Player[] { return this.cabins.map(cabin => cabin.indoors.farmhand); }
 
     createNewCabin(): boolean {
         let cabinTemplate = fs.readFileSync("./src/templates/cabinTemplate").toString();
