@@ -1,5 +1,5 @@
-import { LocalController } from "./local.controller"
-import { LocalSaveService } from "../services/localsave.service"
+import LocalController from "./local.controller"
+import LocalSaveService from "../services/localsave.service"
 import { Test, TestingModule } from '@nestjs/testing';
 
 describe('LocalController', () => {
