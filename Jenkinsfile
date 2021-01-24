@@ -24,8 +24,8 @@ pipeline {
         }
         stage('Package') {
             when {
-                branch 'tfitz/farmobject'
                 allOf {
+                    branch 'tfitz/farmobject'
                     expression {
                         currentBuild.currentResult == 'SUCCESS'
                     }
@@ -38,6 +38,19 @@ pipeline {
                 
                 sh "docker build . -f Dockerfile -t ${env.PROJECT_NAME}"
                 
+            }
+        }
+        stage('Deploy') {
+            when {
+                allOf {
+                    branch 'tfitz/farmobject'
+                    expression {
+                        currentBuild.currentResult == 'SUCCESS'
+                    }
+                }
+            }
+            steps {
+                sh "docker restart ${env.PROJECT_NAME}"
             }
         }
     }
