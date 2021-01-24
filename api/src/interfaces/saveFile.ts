@@ -1,4 +1,4 @@
-import SaveGame from './SaveGame';
+import SaveGame from './saveGame';
 
 export default class SaveFile {
     SaveGame;
