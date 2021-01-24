@@ -23,19 +23,14 @@ export default class FarmObject {
     constructor(config: FarmObjectConfig) {
         this.type = config.type;
         this.element = config.element;
-        if (this.type == GameObjectTypes.Building && this.element) {
-            this.x = (this.element as Building).tileX;
-            this.y = (this.element as Building).tileY;
-            this.width = (this.element as Building).tilesWide + 1;
-            this.height = (this.element as Building).tilesHigh + 1;            
-        }
         if (!this.element) {
             this.x = config.x as number;
             this.y = config.y as number;
             this.width = config.width as number;
             this.height = config.height as number;            
+        } else {
+            this.setValues();
         }
-        this.setValues();
         this.setTileXYRange();
     }
 
@@ -67,7 +62,7 @@ export default class FarmObject {
             return false;
         }
         if (this.type == GameObjectTypes.HoeDirt) {
-            return !(this.element as TerrainFeature).crop;
+            return !(this.element as TerrainFeaturesItem).value.TerrainFeature.crop;
         }
         if (this.type == GameObjectTypes.Object) {
             const category = (this.element as TentacledItem).value.Object.category;
@@ -86,9 +81,14 @@ export default class FarmObject {
 
     setValues(): void {
         switch(this.type) {
+            case GameObjectTypes.FruitTree:
+                this.width = 3;
+                this.height = 3;
+                this.x = (this.element as TentacledItem).key.Vector2.X - 1;
+                this.y = (this.element as TentacledItem).key.Vector2.Y - 1;
+                break;
             case GameObjectTypes.Object:
             case GameObjectTypes.Tree:
-            case GameObjectTypes.FruitTree:
             case GameObjectTypes.HoeDirt:
             case GameObjectTypes.Grass:
                 this.width = 1;
@@ -97,8 +97,8 @@ export default class FarmObject {
                 this.y = (this.element as TentacledItem).key.Vector2.Y;
                 break;
             case GameObjectTypes.Bush:
-                this.width = 1; // TODO: Figure out Bush types
-                this.height = 1; // TODO: Figure out Bush types to determine W and H
+                this.width = (this.element as LargeTerrainFeatureElement).size; // TODO: Figure out Bush types
+                this.height = (this.element as LargeTerrainFeatureElement).size;
                 this.x = (this.element as LargeTerrainFeatureElement).tilePosition.X;
                 this.y = (this.element as LargeTerrainFeatureElement).tilePosition.Y;
                 break;
@@ -132,7 +132,7 @@ export default class FarmObject {
 }
 
 function* Range(min,ct) {
-    for (let x=min;x<=min+ct;x++) {
+    for (let x=min;x<min+ct;x++) {
         yield x;
     }
 }
