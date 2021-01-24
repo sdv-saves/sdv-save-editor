@@ -22,7 +22,7 @@ pipeline {
         stage('Package') {
             when {
                 branch 'tfitz/farmobject'
-                all {
+                allOf {
                     expression {
                         currentBuild.currentResult == 'SUCCESS'
                     }
