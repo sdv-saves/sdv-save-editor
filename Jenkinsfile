@@ -26,7 +26,7 @@ pipeline {
         stage('Package') {
             when {
                 allOf {
-                    branch 'tfitz/farmobject'
+                    branch 'master'
                     expression {
                         currentBuild.currentResult == 'SUCCESS'
                     }
@@ -44,7 +44,7 @@ pipeline {
         stage('Deploy') {
             when {
                 allOf {
-                    branch 'tfitz/farmobject'
+                    branch 'master'
                     expression {
                         currentBuild.currentResult == 'SUCCESS'
                     }
