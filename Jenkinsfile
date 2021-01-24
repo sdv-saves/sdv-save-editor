@@ -22,6 +22,13 @@ pipeline {
                     sh 'npm test'
                 }
             }
+            post {
+                always {
+                    dir ("${env.WORKSPACE}/api") {
+                        junit 'junit.xml'
+                    }
+                }
+            }
         }
         stage('Package') {
             when {
