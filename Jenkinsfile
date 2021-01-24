@@ -4,6 +4,9 @@ pipeline {
             image 'node:14.15'
         }
     }
+    environment {
+        PROJECT_NAME = 'sdv-save-editor'
+    }
     stages {
         stage('Build') {
             steps {
@@ -31,7 +34,7 @@ pipeline {
             steps {
                 dir("${env.WORKSPACE}/api") {
                     sh 'npm run build'
-                    sh "docker build . -f Dockerfile -t ${env.JOB_BASE_NAME}"
+                    sh "docker build . -f Dockerfile -t ${env.PROJECT_NAME}"
                 }
             }
         }
