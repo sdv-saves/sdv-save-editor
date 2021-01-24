@@ -1,4 +1,4 @@
-import SaveFile from '../interfaces/saveFile';
+import SaveGame from '../interfaces/saveGame';
 
 import * as fs from 'fs';
 import { homedir, platform } from 'os';
@@ -19,18 +19,19 @@ export default class FileUtil {
         return fs.readdirSync(FileUtil.saveDir);
     }
 
-    static readSaveFile(saveId: string): SaveFile {
+    static readSaveFile(saveId: string): SaveGame {
         let file = fs.readFileSync(path.join(this.saveDir, saveId, saveId)).toString();
         let data = parser.parse(file, { ignoreAttributes: false, parseAttributeValue : true, ignoreNameSpace: false, parseTrueNumberOnly: true});
-        console.log(data);
-        return new SaveFile(data);
+        return new SaveGame(saveId, data.SaveGame);
     }
 
-    static writeSaveFile(saveId: string, save: SaveFile): string{
+    static writeSaveFile(save: SaveGame): string {
+        const id = (save as any)._id;
+        delete (save as any)._id;
         fs.writeFileSync(
-            path.join(this.saveDir, saveId, saveId),
+            path.join(this.saveDir, id, id),
             "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
-            new parser.j2xParser({ignoreAttributes: false, format: true}).parse(save)
+            new parser.j2xParser({ignoreAttributes: false, format: true}).parse({ SaveGame: save })
         );
         return "Success!";
     }
@@ -39,7 +40,7 @@ export default class FileUtil {
         fs.writeFileSync('saveGame.json', JSON.stringify(data));
     }
 
-    static saveXml(data: SaveFile) {
+    static saveXml(data: SaveGame) {
         let xml = j2xParser.parse(data);
         fs.writeFileSync('saveGame.xml', xml);
     }

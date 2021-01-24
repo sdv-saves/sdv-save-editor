@@ -1,10 +1,10 @@
 import FileUtil from '../utils/FileUtil'
 import { Injectable } from '@nestjs/common';
-import SaveFile from '../interfaces/saveFile';
+import SaveGame from '../interfaces/saveGame';
 
 @Injectable()
-export class LocalSaveService {
-    getSave(saveId: string): SaveFile {
+export default class LocalSaveService {
+    getSave(saveId: string): SaveGame {
         return FileUtil.readSaveFile(saveId);
     }
 
@@ -12,7 +12,7 @@ export class LocalSaveService {
         return FileUtil.getSaveFiles();
     }
 
-    updateSave(saveId: string, save: SaveFile): string {
-        return FileUtil.writeSaveFile(saveId, save);
+    updateSave(save: SaveGame): string {
+        return FileUtil.writeSaveFile(save);
     }
 }

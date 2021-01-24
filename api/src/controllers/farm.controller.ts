@@ -1,14 +1,18 @@
-import { Controller, Param, Post } from '@nestjs/common';
-import { SaveGameService } from '../services/savegame.service';
+import { Controller, Get, Param } from '@nestjs/common';
+import FarmService from '../services/farm.services';
+import LocalSaveService from '../services/localsave.service';
+import MultiplayerService from '../services/mulitplayer.service';
 
 @Controller("farm")
-export class FarmController {
+export default class FarmController {
     constructor(
-        private readonly saveGameService: SaveGameService
+        private readonly saveFileService: LocalSaveService,
+        private readonly farmService: FarmService
     ) {}
 
-    @Post("save/:saveId/player")
-    addPlayer(@Param("saveId") saveId: string): string {
-      return this.saveGameService.addPlayer(saveId);
+    @Get("save/:saveId/name")
+    getFarmName(@Param("saveId") saveId: string) {
+        const save = this.saveFileService.getSave(saveId);
+        return this.farmService.getFarmName(save);
     }
 }
