@@ -1,8 +1,8 @@
 import FileUtil from '../utils/FileUtil'
 import { Injectable } from '@nestjs/common';
-import SaveFile from '../interfaces/saveFile';
+import SaveGame from '../interfaces/saveGame';
 
 @Injectable()
-export class CloudSaveService {
+export default class CloudSaveService {
 
 }

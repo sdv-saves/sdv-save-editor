@@ -19,7 +19,14 @@ pipeline {
         stage('Test') {
             steps {
                 dir("${env.WORKSPACE}/api") {
-                    sh 'npm test'
+                    sh 'npm test -- --ci --testResultsProcessor=jest-junit'
+                }
+            }
+            post {
+                always {
+                    dir ("${env.WORKSPACE}/api") {
+                        junit 'junit.xml'
+                    }
                 }
             }
         }

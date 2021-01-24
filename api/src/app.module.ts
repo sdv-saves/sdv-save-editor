@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
-import { FarmController } from './controllers/farm.controller';
-import { HostController } from './controllers/host.controller';
-import { LocalController } from './controllers/local.controller';
-import { LocalSaveService } from './services/localsave.service';
-import { SaveGameService } from './services/savegame.service';
+import FarmController from './controllers/farm.controller';
+import HostController from './controllers/multiplayer.controller';
+import LocalController from './controllers/local.controller';
+import LocalSaveService from './services/localsave.service';
+import MultiplayerService from './services/mulitplayer.service';
+import FarmService from './services/farm.services';
 
 @Module({
   imports: [],
   controllers: [FarmController, HostController, LocalController],
-  providers: [LocalSaveService, SaveGameService],
+  providers: [LocalSaveService, MultiplayerService, FarmService],
 })
-export class AppModule {}
+export default class AppModule {}

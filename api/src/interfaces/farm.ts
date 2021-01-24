@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 import * as xmlParser from 'fast-xml-parser';
 
 import * as fs from 'fs';
-import { GameLocation, Building, Player } from '../models/saveGame';
+import { GameLocation, Building, Player } from '../models/saveFile';
 
 export default interface Farm extends GameLocation {}
 

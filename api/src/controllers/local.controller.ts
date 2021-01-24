@@ -1,15 +1,15 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import SaveFile from '../interfaces/saveFile';
-import { LocalSaveService } from '../services/localsave.service';
+import SaveGame from '../interfaces/saveGame';
+import LocalSaveService from '../services/localsave.service';
 
 @Controller("local")
-export class LocalController {
+export default class LocalController {
     constructor(
         private readonly saveFileService: LocalSaveService
     ) {}
 
     @Get("save/:id")
-    getSave(@Param("id") id: string): SaveFile {
+    getSave(@Param("id") id: string): SaveGame {
       return this.saveFileService.getSave(id);
     }
   
@@ -17,4 +17,5 @@ export class LocalController {
     getSaves(): Array<string> {
       return this.saveFileService.getSaves();
     }    
+    
 }
