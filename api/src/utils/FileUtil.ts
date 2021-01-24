@@ -33,6 +33,7 @@ export default class FileUtil {
             "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
             new parser.j2xParser({ignoreAttributes: false, format: true}).parse({ SaveGame: save })
         );
+        (save as any)._id = id;
         return "Success!";
     }
 

@@ -8,7 +8,7 @@ export default class LocalSaveService {
         return FileUtil.readSaveFile(saveId);
     }
 
-    getSaves(): Array<string> {
+    getSaves(): string[] {
         return FileUtil.getSaveFiles();
     }
 

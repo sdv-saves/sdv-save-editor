@@ -1,16 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import SaveGame from '../interfaces/saveGame';
 import { Player, Building } from '../models/saveFile';
+import FarmService from './farm.services';
 import LocalSaveService from './localsave.service';
 
 @Injectable()
 export default class MultiplayerService {
     constructor(
-        private readonly saveFileService: LocalSaveService
+        private readonly saveFileService: LocalSaveService,
+        private readonly farmService: FarmService
     ) {}
 
     addPlayer(save: SaveGame): string {
-        if (save.farm.createNewCabin()) {
+        if (this.farmService.createNewCabin(save)) {
             this.saveFileService.updateSave(save);
         }
 
