@@ -6,4 +6,6 @@ RUN npm i --prod
 
 COPY ./api/dist .
 
+RUN chown -R node:node .
+USER node
 ENTRYPOINT [ "node", "main" ]
