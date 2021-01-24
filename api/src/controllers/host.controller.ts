@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { SaveGameService } from '../services/savegame.service';
-import SaveFile from '../interfaces/SaveFile';
+import SaveFile from '../interfaces/saveFile';
 
 @Controller("host")
 export class HostController {

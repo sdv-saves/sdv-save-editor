@@ -1,6 +1,6 @@
 import Farm from './farm';
 
-import { SaveGame as SaveModel, Player } from '../models/SaveGame'
+import { SaveGame as SaveModel, Player } from '../models/saveGame'
 
 export default interface SaveGame extends SaveModel {}
 
