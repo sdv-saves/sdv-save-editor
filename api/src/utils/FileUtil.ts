@@ -36,7 +36,7 @@ export default class FileUtil {
         return "Success!";
     }
 
-    static saveJson(data: string) {
+    static saveJson(data: any) {
         fs.writeFileSync('saveGame.json', JSON.stringify(data));
     }
 
