@@ -34,8 +34,10 @@ pipeline {
             steps {
                 dir("${env.WORKSPACE}/api") {
                     sh 'npm run build'
-                    sh "docker build . -f Dockerfile -t ${env.PROJECT_NAME}"
                 }
+                
+                sh "docker build . -f Dockerfile -t ${env.PROJECT_NAME}"
+                
             }
         }
     }
