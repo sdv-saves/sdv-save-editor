@@ -6,6 +6,7 @@ pipeline {
     }
     environment {
         PROJECT_NAME = 'sdv-save-editor'
+        DOCKER_CONTAINER_NAME = 'SDVSaveEditor'
     }
     stages {
         stage('Build') {
@@ -50,7 +51,7 @@ pipeline {
                 }
             }
             steps {
-                sh "docker restart ${env.PROJECT_NAME}"
+                sh "docker restart ${env.DOCKER_CONTAINER_NAME}"
             }
         }
     }
